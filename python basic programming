@@ -1,0 +1,17 @@
+FIRST PROGRAM
+/*PYTHON PROGRAM WHICH ACCEPTS THE RADIUS OF A CIRCLE FROM THE USER AND COMPUTES AREA.*/
+>>> from math import pi    //IMPORTS MATH HEADER FILE.
+>>> r=float(input("Enter a radius:"))
+Enter a radius:1.1
+>>> A=(pi*r*r)
+>>> print("Area of the circle is",format(A,'.3f'),"sq units.")  //USING FORMAT SPECIFIER UPTO 3 DECIMAL PLACES.
+Area of the circle is 3.801 sq units.  //FINAL OUTPUT.
+
+
+SECOND PROGRAM
+/*ACCEPTS A FILENAME FROM USER AND PRINTS THE EXTENSION OF THAT FILE.*/
+>>> filename=input("Input the filename:")
+Input the filename:abc.py
+>>> f_extns=filename.split(".")  //SPLIT() METHOD RETURNS A LIST OF WORDS IN THE STRING/LINE , SEPARATED BY A DELIMITER STRING.
+>>> print("The extension of the file is:" + repr(f_extns[-1]))  //REPR-REPRESENTATION, IT SHOULD RETURN A STRING WHICH COULD BE INCLUDED IN AN EXPRESSION.
+The extension of the file is:'py'
