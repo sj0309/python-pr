@@ -1,0 +1,17 @@
+list1 = [12,-7,5,64,-14]
+for num in list1:              #using membership operator to check if value exists in 'list1'& iterating each element in list.
+    if num>=0:                 #checking for positive number in list.
+        print(num,end=" ")
+print("\n")
+list2=[12,14,-95,3]
+for num in list2:              #using membership operator to check if value exists in 'list2'.
+    if num>=0:                 #checking for positive number in list.
+        print(num,end=" ")     #ending output with <space>
+        
+
+Output       
+        
+12 5 64 
+
+12 14 3
+        
