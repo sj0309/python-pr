@@ -1,6 +1,9 @@
-n=int(input("Enter no. of terms:"))  #'n' integer value until which fibonacci series has to be generated.
-a,b=0,1  #first two terms '0' & '1'.
-count=0  #initializing counter variable.
+n=int(input("Enter no. of terms:"))       #'n' integer value until which fibonacci series has to be generated.
+a,b=0,1                                   #first two terms '0' & '1'.
+count=0                                   #initializing counter variable.
+
+
+
 #checking if 'n'- no. of terms is valid.
 if n<=0:
     print("Please enter a positive integer")
@@ -8,51 +11,17 @@ elif n==1:
     print("Fibonacci sequence upto",n)
     print(a)
 else:
-    print("Fibonacci sequence:") #if no. of terms is more than two then we use while loop to find next term by adding previous two terms.
+    print("Fibonacci sequence:")           #if no. of terms is more than two then we use while loop to find next term by adding previous two terms.
     while count<n:
         print(a)
         nth=a+b
-        #update values by swapping.
+       
+       
+       
+ #update values by swapping.
         a=b
         b=nth
-        count+=1  #incrementing counter variable & continuing with the same process for 'n' no. of terms.
-        
-        Enter no. of terms:14
-Fibonacci sequence:
-0
-1
-1
-2
-3
-5
-8
-13
-21
-34
-55
-89
-144
-233
-​
-​
-n=int(input("Enter no. of terms:"))  #'n' integer value until which fibonacci series has to be generated.
-a,b=0,1  #first two terms '0' & '1'.
-count=0  #initializing counter variable.
-#checking if 'n'- no. of terms is valid.
-if n<=0:
-    print("Please enter a positive integer")
-elif n==1:
-    print("Fibonacci sequence upto",n)
-    print(a)
-else:
-    print("Fibonacci sequence:") #if no. of terms is more than two then we use while loop to find next term by adding previous two terms.
-    while count<n:
-        print(a)
-        nth=a+b
-        #update values by swapping.
-        a=b
-        b=nth
-        count+=1  #incrementing counter variable & continuing with the same process for 'n' no. of terms.
+        count+=1                           #incrementing counter variable & continuing with the same process for 'n' no. of terms.
         
 Output       
 Enter no. of terms:13
@@ -70,5 +39,3 @@ Fibonacci sequence:
 55
 89
 144
-        
-        
