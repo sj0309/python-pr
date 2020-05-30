@@ -1,24 +1,31 @@
+#SCRAPING WEB PAGES TO EXTRACT THE INFORMATION OF OUR INTEREST USIN PYTHON.
+#FIRSTLY WEBPAGES ARE MADE UP OF 'HTML' WHICH DEFINE THE CONTENT OF THE PAGE & 'CSS' WHICH PROVIDE VISUAL STYLING TO THE CONTENT.
 #import libraries
 import pandas as pd
-import requests
+#REQUESTS PACKAGE HELP US IN SENDING A REQUEST TO A WEB SERVER & GETTING THE 'HTML' RESPONSE. 
+import requests 
+#BEAUTIFULSOUP LIBRARY HELPS IN PARSING & EXTRACTING THE USEFUL INFORMATION  FROM MULTIPLE LINES OF 'HTML' CODES.
 from bs4 import BeautifulSoup
 
 #send request
-url='https://www.bankbazaar.com/reviews/sbi-cards/credit-card.html'
+url='https://www.bankbazaar.com/reviews/sbi-cards/credit-card.html' 
 page= requests.get(url)
-soup= BeautifulSoup(page.text,'html.parser')
+soup= BeautifulSoup(page.text,'html.parser')      #BEAUTIFULSOUP CAN BE UTILIZED FOR HTML PARSING & FINALLY WE'LL BE LEFT WITH PARSED OBJECT IN SOUP VARIABLE.
 
-#reading reviews texts
-review_text=[]
-review_text_elt= soup.find_all(class_='text_here review-desc-more')
 
-for item in review_text_elt:
-    review_text.append(item.text)
+
+#reading reviews texts        #INSPECTING REVIEW TEXTS ON CHROME VIA 'URL'.
+review_text=[]                #CREATING A NEW BLANK ARRAY.
+review_text_elt= soup.find_all(class_='text_here review-desc-more')     #USING SOUP OBJECT CREATED EARLIER & FIND ALL METHOD IS USED  TO FIND ALL PARTICULAR HTML TAG WITH SOME CRITERIA DEFINED IN THIS METHOD. 
+                                                                        #CLASS ATTRIBUTE IS USED HERE TO RETURN ARRAY OF ALL ELEMENTS WHERE THIS CLASS MATCHES.
+
+for item in review_text_elt:        #LOOPING THIS ELEMENT
+    review_text.append(item.text)   #APPENDING THE CONTENT OF THIS ELEMENT INTO THE REVIEW TEXT ARRAY.
     
   
 
-#read author name
-user_name=[]
+#read author name            #INSPECTING USER'S NAME
+user_name=[]                 #DEFINING A BLANK ARRAY.
 user_name_elt=soup.find_all(class_='reviewer-profile')
 
 for item in user_name_elt:
@@ -26,23 +33,80 @@ for item in user_name_elt:
     
  
 
-#read bank name
+#read bank name               #INSPECTING BANK LOGO.
 bank_name=[]
 
 bank_name_elt=soup.find_all('div',{'class':'review-bank-title'})
 
 for item in bank_name_elt:
-    bank_name.append(item.find('img').get('alt'))
+    bank_name.append(item.find('img').get('alt'))      #WE CAN'T READ THE TEXT FROM IMAGE BUT WE CAN READ TXT FROM HTML, SO WE'LL READ THE NAME FROM IMAGE ATTRIBUTE i.e.-'alt'. 
     
-bank_name 
+bank_name      #RUN THE CODE.
 
-#create dataframe
+
+OUTPUT
+['SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards',
+ 'SBI Cards']
+
+
+
+
+
+#COMBINING ALL THE THREE ARRAYS AND CREATING A PANDAS DATAFRAME.
+#create dataframe           
 
 final_array=[]
-for text, user, bank in zip(review_text,user_name,bank_name):
+for text, user, bank in zip(review_text,user_name,bank_name):       #PYTHON ZIP FUNCTION WHICH HELPS IN COMBINING THE ARRAYS & TRAVERSING THROUGH ALL OF THEM IN A SINGLE STEP.
     final_array.append({'Review_Text':text,'User':user,'Bank':bank})
     
-df = pd.DataFrame(final_array)
+df = pd.DataFrame(final_array)      #USING PANDAS DATAFRAME METHOD CREATING DATAFRAME NAMED 'DF'.
 
-df
+#printing dataframe.
+df                                   #run the code.
+
+
+
+
+
+OUTPUT
+	Review_Text	         User	         Bank
+0	\n SBI credit c...	\nBANDI L\n ...	SBI Cards
+1	\n I am using S...	\nRAM G\n ,...	SBI Cards
+2	\n I have used ...	\nRAJEEV \n ...	SBI Cards
+3	\n I have been ...	\nRAJ\n , g...	SBI Cards
+4	\n I have used ...	\nM A J\n ,...	SBI Cards
+5	\n It was only ...	\nRAM G\n ...	SBI Cards
+6	\n SBI has offe...	\nRAMAKRISHNAN \n ...	SBI Cards
+7	\n SBI customer...	\nSH \n , ...	SBI Cards
+8	\n I have opene...	\nRAJ \n ,...	SBI Cards
+9	\n I have paid ...	\nNILESH \n ...	SBI Cards
+10	\n I have just ...	\nRUPAL \n ...	SBI Cards
+11	\n SBI credit c...	\nMANI\n , ...	SBI Cards
+12	\n I have a SBI...	\nLAL\n , j...	SBI Cards
+13	\n I am having...	\nRAM MOVALIYA\n ...	SBI Cards
+14	\n I have been ...	\nTASKEEN\n ...	SBI Cards
+15	\n I have avail...	\nSANTOSH \n ...	SBI Cards
+16	\n SBI has pr...	\nRAJAT \n ...	SBI Cards
+17	\n I have appli...	\nD V M \n ...	SBI Cards
+18	\n Am using SBI...	\nMAHADEV \n ...	SBI Cards
+19	\n The bank age...	\nHARNEET \n ...	SBI Cards
+​
 
