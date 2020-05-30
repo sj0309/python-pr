@@ -1,0 +1,61 @@
+jack={"name":"Jack Keller","assignment":[90,70,90,20],"test":[95,75],"lab":[78,90,77,20]}
+
+james={"name":"James Hemsworth","assignment":[92,56,94,30],"test":[90,90],"lab":[97,90,78,92]}
+
+dylan={"name":"Dylan Rodriguez","assignment":[77,90.7,93,39],"test":[98,97],"lab":[80,80]}
+
+jess={"name":"Jessica Meyer","assignment":[97,55,97,91],"test":[90,50],"lab":[79,94,96]}
+
+tom={"name":"Tom Menon","assignment":[99,88,60,56],"test":[95,96],"lab":[90,40.6]}
+
+def get_avg(marks):
+    total_sum = sum(marks)
+    total_sum = float(total_sum)
+    return total_sum/len(marks)
+
+def calculate_total_avg(students):
+    assignment = get_avg(students["assignment"])
+    test = get_avg(students["test"])
+    lab = get_avg(students["lab"])
+    return(0.1*assignment + 0.7*test + 0.2*lab)
+
+def assign_grade(score):
+    if score >= 90: return 'A'
+    elif score >= 80: return 'B'
+    elif score >= 70: return 'C'
+    elif score >= 60: return 'D'
+    else: return 'E'
+
+def class_avg(student_list):
+    result_list =[]
+    
+    for student in student_list:
+        stud_avg= calculate_total_avg(student)
+        result_list.append(stud_avg)
+        return get_avg(result_list)   
+
+students=[jack,james,dylan,jess,tom] 
+for i in students:
+    print(i["name"])
+    print("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=")
+    print("Average marks of %s is :%s" %(i["name"],calculate_total_avg(i)))
+    print("Letter grade of %s is :%s" %(i["name"],assign_grade(calculate_total_avg(i))))
+    
+    print()
+
+class_av = class_avg(students)
+print("Class Average is %s" %(class_av))
+print("Letter Grade of the class is %s " %(assign_grade(class_av)))
+
+
+
+
+
+
+
+
+
+class_av = class_avg(students)
+print("Class Average is %s" %(class_av))
+print("Letter Grade of the class is %s " %(assign_grade(class_av)))
+
