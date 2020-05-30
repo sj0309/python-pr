@@ -1,3 +1,6 @@
+#GIVEN DIFFERENT SCORED MARKS OF STUDENTS WE'LL FIND THE GRADES.
+
+#CREATING A DICTINONARYWHICH CONSISTS OF STUDENT NAME, ASSIGNMENT, TEST & THEIR RESPECTIVE LAB RESULTS.
 jack={"name":"Jack Keller","assignment":[90,70,90,20],"test":[95,75],"lab":[78,90,77,20]}
 
 james={"name":"James Hemsworth","assignment":[92,56,94,30],"test":[90,90],"lab":[97,90,78,92]}
@@ -8,17 +11,25 @@ jess={"name":"Jessica Meyer","assignment":[97,55,97,91],"test":[90,50],"lab":[79
 
 tom={"name":"Tom Menon","assignment":[99,88,60,56],"test":[95,96],"lab":[90,40.6]}
 
+
+#FUNCTION CALCULATES AVERAGE.
 def get_avg(marks):
     total_sum = sum(marks)
     total_sum = float(total_sum)
     return total_sum/len(marks)
-
+    
+    
+#FUNCTION CALCULATES TOTAL AVERAGE.
 def calculate_total_avg(students):
     assignment = get_avg(students["assignment"])
     test = get_avg(students["test"])
     lab = get_avg(students["lab"])
+    #RETURNS RESULT BASED ON WEIGHTAGE SUPPLIED i.e. 10%,70%,20% FROM ASSIGNMENTS, TEST & LAB RESPECTIVELY.
     return(0.1*assignment + 0.7*test + 0.2*lab)
 
+ 
+
+#FUNCTION CALCULATES GRADE OF EACH STUDENT
 def assign_grade(score):
     if score >= 90: return 'A'
     elif score >= 80: return 'B'
@@ -26,6 +37,10 @@ def assign_grade(score):
     elif score >= 60: return 'D'
     else: return 'E'
 
+
+
+
+#FUNCTION TO CALCULATE TOTAL AVERAGE MARKS OF THE WHOLE CLASS 
 def class_avg(student_list):
     result_list =[]
     
@@ -34,7 +49,13 @@ def class_avg(student_list):
         result_list.append(stud_avg)
         return get_avg(result_list)   
 
+
+
+#STUDENT LIST CONSISTING THE DICTIONARY OF ALL THE STUDENTS
 students=[jack,james,dylan,jess,tom] 
+
+
+#LOOP- ITERATE THROUGH THE STUDENTS LIST & CALCULATE THEIR RESPECTIVE AVERAGE MARKS & GRADE.
 for i in students:
     print(i["name"])
     print("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=")
@@ -43,11 +64,43 @@ for i in students:
     
     print()
 
+
+
+
+#CALCULATE THE AVERAGE OF WHOLE CLASS.
 class_av = class_avg(students)
 print("Class Average is %s" %(class_av))
 print("Letter Grade of the class is %s " %(assign_grade(class_av)))
 
 
+OUTPUT
+Jack Keller
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+Average marks of Jack Keller is :79.5
+Letter grade of Jack Keller is :C
+
+James Hemsworth
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+Average marks of James Hemsworth is :87.65
+Letter grade of James Hemsworth is :B
+
+Dylan Rodriguez
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+Average marks of Dylan Rodriguez is :91.7425
+Letter grade of Dylan Rodriguez is :A
+
+Jessica Meyer
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+Average marks of Jessica Meyer is :75.43333333333334
+Letter grade of Jessica Meyer is :C
+
+Tom Menon
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+Average marks of Tom Menon is :87.485
+Letter grade of Tom Menon is :B
+
+Class Average is 79.5
+Letter Grade of the class is C 
 
 
 
@@ -55,7 +108,4 @@ print("Letter Grade of the class is %s " %(assign_grade(class_av)))
 
 
 
-class_av = class_avg(students)
-print("Class Average is %s" %(class_av))
-print("Letter Grade of the class is %s " %(assign_grade(class_av)))
 
