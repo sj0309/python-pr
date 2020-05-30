@@ -1,0 +1,48 @@
+#import libraries
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+
+#send request
+url='https://www.bankbazaar.com/reviews/sbi-cards/credit-card.html'
+page= requests.get(url)
+soup= BeautifulSoup(page.text,'html.parser')
+
+#reading reviews texts
+review_text=[]
+review_text_elt= soup.find_all(class_='text_here review-desc-more')
+
+for item in review_text_elt:
+    review_text.append(item.text)
+    
+  
+
+#read author name
+user_name=[]
+user_name_elt=soup.find_all(class_='reviewer-profile')
+
+for item in user_name_elt:
+    user_name.append(item.text)
+    
+ 
+
+#read bank name
+bank_name=[]
+
+bank_name_elt=soup.find_all('div',{'class':'review-bank-title'})
+
+for item in bank_name_elt:
+    bank_name.append(item.find('img').get('alt'))
+    
+bank_name 
+
+#create dataframe
+
+final_array=[]
+for text, user, bank in zip(review_text,user_name,bank_name):
+    final_array.append({'Review_Text':text,'User':user,'Bank':bank})
+    
+df = pd.DataFrame(final_array)
+
+df
+
